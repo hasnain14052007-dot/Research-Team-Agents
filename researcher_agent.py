@@ -4,7 +4,7 @@ from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
 def get_groq_llm():
-    # Safely fetch API key from Streamlit Secrets or Environment
+    # Retrieve API key from Streamlit Secrets or Environment
     groq_key = st.secrets.get("GROQ_API_KEY") or os.environ.get("GROQ_API_KEY")
     return LLM(
         model="groq/openai/gpt-oss-20b",
