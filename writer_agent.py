@@ -1,10 +1,12 @@
 import os
+import streamlit as st
 from crewai import Agent, LLM
 
 def get_groq_llm():
+    groq_key = st.secrets.get("GROQ_API_KEY") or os.environ.get("GROQ_API_KEY")
     return LLM(
-        model="groq/llama-3.3-70b-versatile",
-        api_key=os.environ.get("GROQ_API_KEY")
+        model="groq/openai/gpt-oss-20b",
+        api_key=groq_key
     )
 
 def create_writer():
