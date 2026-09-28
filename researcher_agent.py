@@ -1,18 +1,18 @@
 import os
+import streamlit as st
 from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
 def get_groq_llm():
-    # CrewAI natively supports Groq through its LLM class
+    # Safely fetch API key from Streamlit Secrets or Environment
+    groq_key = st.secrets.get("GROQ_API_KEY") or os.environ.get("GROQ_API_KEY")
     return LLM(
-        model="groq/llama-3.3-70b-versatile",
-        api_key=os.environ.get("GROQ_API_KEY")
+        model="groq/openai/gpt-oss-20b",
+        api_key=groq_key
     )
 
 def create_researcher():
-    # Cloud-based search tool (requires no local installation)
     search_tool = SerperDevTool()
-    
     return Agent(
         role="Senior Technical Researcher",
         goal="Uncover the latest developments, trends, and detailed information about {topic}",
