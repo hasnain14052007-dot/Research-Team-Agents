@@ -1,5 +1,7 @@
 import os
 import streamlit as st
+import crewai.llms.cache as _crewai_cache
+_crewai_cache.mark_cache_breakpoint = lambda msg: msg
 
 st.set_page_config(page_title="AI Research Team (GPT-OSS-20B)", page_icon="🤖", layout="wide")
 
